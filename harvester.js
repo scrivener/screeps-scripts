@@ -1,4 +1,4 @@
-var utils = require('utils');
+var util = require('util');
 
 module.exports = {
   run: function(creep) {
@@ -12,14 +12,14 @@ module.exports = {
 
     if (creep.memory.harvesting) {
       var sources = room.find(FIND_SOURCES);
-      utils.goToAndHarvest(creep, sources[0]);
+      util.goToAndHarvest(creep, sources[0]);
     } else if (creep.memory.dispensing) {
       var target = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
         filter: function(structure){
           return (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION)  && structure.energy < structure.energyCapacity;
         }
       });
-      utils.goToAndTransfer(creep, target, RESOURCE_ENERGY);
+      util.goToAndTransfer(creep, target, RESOURCE_ENERGY);
     }
     
   }
