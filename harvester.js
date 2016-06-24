@@ -11,7 +11,7 @@ module.exports = {
     }
 
     if (creep.memory.harvesting) {
-      var sources = room.find(FIND_SOURCES);
+      var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
       util.goToAndHarvest(creep, sources[0]);
     } else if (creep.memory.dispensing) {
       var target = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
