@@ -11,20 +11,15 @@ module.exports = {
     }
     var targetSourceID = util.getSourceAssignedToCreep(creep.name);
     if (Game.time % 10 === 0) {
-      creep.say(`${creep.name} h/s ${targetSourceID}`);
+      creep.say(`${creep.name} h/u ${targetSourceID}`);
     }
 
     if (creep.memory.harvesting) {
       util.goToAndHarvest(creep, Game.getObjectById(targetSourceID));
     } else if (creep.memory.dispensing) {
-      var target = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-        filter: function(structure){
-          return (structure.structureType == STRUCTURE_SPAWN || 
-                  structure.structureType == STRUCTURE_EXTENSION)  
-                  && structure.energy < structure.energyCapacity;
-        }
-      });
-      util.goToAndTransfer(creep, target, RESOURCE_ENERGY);
+      if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(creep.room.controller);
+      }
     }
   }
 }
