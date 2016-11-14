@@ -53,6 +53,20 @@ module.exports = {
       }
     }
     return undefined;
+  },
+
+  getAllCreepsOfRole: function(role) {
+    let creeps = Object.values(Game.creeps);
+    let creepsOfRole = [];
+
+    for (let creep in creeps) {
+      if (creep.role === role) {
+        creepsOfRole.push(creep.name);
+      }
+    }
+    return creepsOfRole;
   }
+
+
 
 };
