@@ -22,9 +22,10 @@ module.exports.loop = function () {
     'builder': 1
   }
 
-  // let totalTargetPopulation = Memory.targetPopulation.reduce((a,b) => {
-  //   return a + b[1];
-  // });
+  let totalTargetPopulation = 0;
+  for (let count in Object.values(Memory.targetPopulation)) {
+    totalTargetPopulation += count;
+  };
 
   if (creeps.length < totalTargetPopulation) {
     for (let i=0; i<roles.length; i++) {
