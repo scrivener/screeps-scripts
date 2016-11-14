@@ -22,19 +22,12 @@ module.exports.loop = function () {
     'builder': 1
   }
 
-  let totalTargetPopulation = 0;
-  for (let count in Object.values(Memory.targetPopulation)) {
-    totalTargetPopulation += count;
-  };
-
-  if (creeps.length < totalTargetPopulation) {
-    for (let i=0; i<roles.length; i++) {
-      let role = roles[i];
-      let creepsOfRole = util.getAllCreepsOfRole(role);
-      if (creepsOfRole.length < Memory.targetPopulation[role]) {
-        console.log(`Want to spawn a ${role} because we have ${creepsOfRole.length}/${Memory.targetPopulation[role]}`);
-        break;
-      }
+  for (let i=0; i<roles.length; i++) {
+    let role = roles[i];
+    let creepsOfRole = util.getAllCreepsOfRole(role);
+    if (creepsOfRole.length < Memory.targetPopulation[role]) {
+      console.log(`Want to spawn a ${role} because we have ${creepsOfRole.length}/${Memory.targetPopulation[role]}`);
+      break;
     }
   }
 
